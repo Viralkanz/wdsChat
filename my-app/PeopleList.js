@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 
-class App extends React.Component {
+class PeopleList extends React.Component {
 
 
  static navigationOptions = {
@@ -49,8 +49,6 @@ StatusBar.setHidden(false);
             )
         });
     }
-
-   // show listview
 
     componentDidMount() {
         this.updateListView(this.state.itemList);
@@ -187,7 +185,7 @@ StatusBar.setHidden(false);
     }
 }
 
-export default App;
+export default PeopleList;
 
 const styles = StyleSheet.create({
     Hed: {
@@ -260,8 +258,3 @@ const styles = StyleSheet.create({
       backgroundColor: '#8E8E8E',
     }
 });
-
-
-
-
-//Demo text
