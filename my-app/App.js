@@ -50,6 +50,8 @@ StatusBar.setHidden(false);
         });
     }
 
+   // show listview
+
     componentDidMount() {
         this.updateListView(this.state.itemList);
     }
