@@ -1,8 +1,8 @@
 import {createStackNavigator} from 'react-navigation';
-import Login from './Login';
+import otp from '../screens/otp';
 
 const App = createStackNavigator({
-  Login: {screen: Login},
+  otp: {screen: otp},
   
 });
 
