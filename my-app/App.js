@@ -258,3 +258,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#8E8E8E',
     }
 });
+
+
+
+
+//Demo text
