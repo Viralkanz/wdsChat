@@ -63,7 +63,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity onPress={() => navigate('Login')}>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {styles.ButtonImg}
+                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
               Scan
@@ -74,7 +74,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {styles.ButtonImg}
+                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
                Invite
@@ -85,7 +85,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {styles.ButtonImg}
+                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
                Add
@@ -104,7 +104,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {{width: 60, height: 60}}
+                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
               Home
@@ -115,7 +115,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {{width: 60, height: 60}}
+                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
                Stories
@@ -126,7 +126,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {{width: 60, height: 60}}
+                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
               People
@@ -137,7 +137,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {{width: 60, height: 60}}
+                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
                ßetting
@@ -161,7 +161,7 @@ StatusBar.setHidden(false);
                     <View style= {styles.MainContainer}> 
                      <Image
                        //style={styles.Image}
-                       source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {styles.Image}
+                       source={require('./assets/userProfile.jpg')} style = {styles.Image}
                       />                   
                       </View>
                         <View style={styles.label}>
