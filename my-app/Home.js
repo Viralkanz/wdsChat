@@ -11,16 +11,16 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
+import {navigate} from 'react-navigation';
 
-
-class PeopleList extends React.Component {
-
+class Home extends React.Component {
 
  static navigationOptions = {
-   title: 'Home',
+   title: 'People',
    headerStyle: {
-     backgroundColor: '#f4511e',
-   }
+     backgroundColor: 'green',
+   },
+   headerTintColor: '#fff',
  }
 componentWillMount() {
 StatusBar.setHidden(false);
@@ -58,13 +58,9 @@ StatusBar.setHidden(false);
         return (
           // <View style={styles.Hed}/>
             <View style={styles.list}>
-             <View style={styles.Hed}>
-             <StatusBar hidden={false} backgroundColor="green" translucent={true} />
-             <Text style={styles.titleText} >People</Text>
-             </View>
              <View style={{flexDirection: 'row'}}>
              <View style={{width: Dimensions.get('window').width/3, height: 100, backgroundColor: 'white',alignItems: 'center',}} >
-             <TouchableOpacity>
+             <TouchableOpacity onPress={() => navigate('Login')}>
              <Image
                 //style={styles.Image}
                 source={require('/Users/shubhamchikani/Documents/Work/Demo/React/my-app/assets/0.jpg')} style = {styles.ButtonImg}
@@ -185,15 +181,9 @@ StatusBar.setHidden(false);
     }
 }
 
-export default PeopleList;
+export default Home;
 
 const styles = StyleSheet.create({
-    Hed: {
-        backgroundColor: 'green',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 80
-     },
      ButtonView: {
         backgroundColor: 'white',
         height: 100
@@ -205,12 +195,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center'
      },
-     titleText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginTop:40,
-        color: 'white'
-      },
     list: {
         flex: 1,
       //  marginTop:60//Help @VT
