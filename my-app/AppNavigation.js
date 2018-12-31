@@ -1,19 +1,27 @@
-import {createStackNavigator} from 'react-navigation';
-import Login from './Login';
-import Password from './Password'
+import {
+  createStackNavigator,
+  createAppContainer
+} from 'react-navigation';
+import Login from '../Screens/Login';
+import Password from '../Screens/Password';
+import Home from '../Screens/Home';
 
 
 
 const App = createStackNavigator({
   Login: {
-    
-    screen: Login},
-  
+
+    screen: Login
+  },
+
   Password: {
     screen: Password
-  
+
   },
-  
+
+  Home: {
+    screen : Home
+  }
 });
 
 
