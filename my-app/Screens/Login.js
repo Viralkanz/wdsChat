@@ -55,7 +55,7 @@ export default class login extends React.Component {
             <Background style={styles.container}>
                 {/* <View style={styles.topContainer}></View>
 <View style={styles.bottomContainer}></View> */}
-            <ScrollView style={styles.wrapper}>
+                <ScrollView style={styles.wrapper}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>WhatsApp</Text>
                     </View>
@@ -76,7 +76,7 @@ export default class login extends React.Component {
                                     data={data}
                                 />
                             </View>
-                            <View style={{ flex: 1 , marginTop:18}}>
+                            <View style={{ flex: 1, marginTop: 18 }}>
                                 <TextInput
                                     value={this.state.username}
                                     onChangeText={(username) => this.setState({ username })}
@@ -91,13 +91,13 @@ export default class login extends React.Component {
                                 <Text style={styles.inputLabel2}>Or connect with social account</Text>
                             </View>
                             <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                 onPress={() => this.props.navigation.navigate('Password')}>                                   
+                                <TouchableOpacity style={styles.password} activeOpacity={0.5}
+                                    onPress={() => this.props.navigation.navigate('Password')}>
                                     <Image
                                         source={require('../assets/RightArrow.png')}
                                         style={styles.FloatingButtonStyle} />
 
-                                    
+
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#dfdfdf"
     },
     titleWrapper: {
-        flex: 1,
+        flex: 0.8,
         justifyContent: "center",
         flexDirection: "row",
     },
@@ -137,7 +137,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#009C92"
     },
     inputWrapper2: {
+    
         paddingVertical: 20,
+        position: 'absolute',
+        top: '70%',
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -150,7 +153,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         backgroundColor: "#f2f2f2",
         shadowRadius: 6,
-        
+
     },
     inputWrapper3: {
         paddingVertical: 50,
@@ -246,8 +249,8 @@ const styles = StyleSheet.create({
         height: 50,
     },
     input: {
-        width: 200,
-        height: 44,
+        width: '90%',
+        height: 34,
         padding: 10,
         borderWidth: 1,
         borderColor: 'black',
@@ -258,7 +261,7 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         // marginRight: 30,
         borderRadius: 10,
-    
-    
-      },
+
+
+    },
 });

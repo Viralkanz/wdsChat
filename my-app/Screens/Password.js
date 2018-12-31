@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#dfdfdf"
     },
     titleWrapper: {
-        flex: 1,
+        flex: 0.8,
         justifyContent: "center",
         flexDirection: "row",
     },
@@ -127,7 +127,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#009C92"
     },
     inputWrapper2: {
+       
         paddingVertical: 20,
+        position: 'absolute',
+        top: '60%',
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -238,16 +241,16 @@ const styles = StyleSheet.create({
         height: 50,
     },
     input: {
-        width: 200,
-        height: 44,
+        width: '100%',
+        height: 34,
         padding: 10,
         borderWidth: 1,
         borderColor: 'black',
         marginTop: 10,
         marginBottom: 15,
-        paddingTop: 15,
-        paddingBottom: 15,
-        marginLeft: 80,
+        // paddingTop: 15,
+        // paddingBottom: 15,
+        marginLeft: 20,
        // marginRight: 50,
         borderRadius: 10,
 

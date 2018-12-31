@@ -2,9 +2,9 @@ import {
     createStackNavigator,
     createAppContainer
   } from 'react-navigation';
-  import Login from '../Screens/Login';
-  import Password from '../Screens/Password';
-  import Home from '../Screens/Home';
+  import Login from '../screens/Login';
+  import Password from '../screens/Password';
+  import Home from '../screens/Home';
   
   
   

@@ -37,7 +37,7 @@ top: 0,
 left: 0,
 bottom: 0,
 right: 0,
-flex: 1,
+//flex: 1,
 height: '100%',
 width: '100%'
 },
@@ -56,6 +56,6 @@ text: {
 textAlign: 'center',
 color: 'white',
 backgroundColor: 'rgba(0,0,0,0)',
-fontSize: 32
+fontSize: 24
 }
 });
