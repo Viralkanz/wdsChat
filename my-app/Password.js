@@ -12,11 +12,10 @@ import {
     Alert,
     TextInput
 } from "react-native";
-
-import Background from "../Background";
+import Background from "./Background";
 import { Dropdown } from 'react-native-material-dropdown';
 
-export default class login extends React.Component {
+export default class Demo extends React.Component {
 
     mobileNumber = { myMobileNumber: '+91 8888888888' }
 
@@ -55,32 +54,22 @@ export default class login extends React.Component {
             <Background style={styles.container}>
                 {/* <View style={styles.topContainer}></View>
 <View style={styles.bottomContainer}></View> */}
-            <ScrollView style={styles.wrapper}>
+                <ScrollView style={styles.wrapper}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>WhatsApp</Text>
                     </View>
 
                     <View style={styles.inputWrapper2}>
-                        <Text style={styles.inputLabel2}>WhatsApp Messenger</Text>
+                        <Text style={styles.inputLabel2}>Password</Text>
                         <Text style={styles.inputLabel3}>
-                            Enter your mobile number to login or register</Text>
+                            Enter your passsword to login </Text>
                         <View style={{ flexDirection: 'row' }} >
-                            <View style={{ width: '25%' }}>
-                                <Dropdown
-                                    value={'+91'}
-                                    style={{ flex: 1 }}
-                                    style={{ width: 100, marginLeft: 8 }}
-                                    TextStyle={{ labelFontSize: 22, paddingTop: 50, paddingBottom: 20 }}
-                                    //style= {styles.Dropdown}
-                                    // style={{ width: "200%" }}
-                                    data={data}
-                                />
-                            </View>
-                            <View style={{ flex: 1 , marginTop:18}}>
+                        
+                            <View style={{ flex: 1 }}>
                                 <TextInput
                                     value={this.state.username}
                                     onChangeText={(username) => this.setState({ username })}
-                                    placeholder={'Your mobile number'}
+                                    placeholder={'Username'}
                                     style={styles.input}
                                 />
                             </View>
@@ -88,13 +77,15 @@ export default class login extends React.Component {
 
                         <View style={styles.container3}>
                             <View style={styles.resendCodeContainer}>
-                                <Text style={styles.inputLabel2}>Or connect with social account</Text>
+                                <Text style={styles.inputLabel2}>I forgot my password</Text>
                             </View>
                             <View style={styles.buttonContainer}>
                             <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                 onPress={() => this.props.navigation.navigate('Password')}>                                   
+                              onPress={() => this.props.navigation.navigate('Demo')}
+                              >
+                                
                                     <Image
-                                        source={require('../assets/RightArrow.png')}
+                                        source={require('/Users/jamest/Documents/Raj_Work/Demo/ReactDemo/assets/RightArrow.png')}
                                         style={styles.FloatingButtonStyle} />
 
                                     
@@ -150,7 +141,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         backgroundColor: "#f2f2f2",
         shadowRadius: 6,
-        
+        //elevation: 5
+
+          
     },
     inputWrapper3: {
         paddingVertical: 50,
@@ -253,12 +246,12 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         marginTop: 10,
         marginBottom: 15,
-        //paddingTop: 15,
-        //paddingBottom: 15,
+        paddingTop: 15,
+        paddingBottom: 15,
         marginLeft: 30,
-        // marginRight: 30,
+        marginRight: 30,
         borderRadius: 10,
     
     
-      },
+    },
 });
