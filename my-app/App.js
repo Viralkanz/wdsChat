@@ -1,11 +1,10 @@
 import React from 'react';
-import AppNavigation from "./AppNavigation/AppNavigation"
+import AppNavigator from './navigation/AppNavigation'
 
-export default class App extends React.Component { 
+export default class App extends React.Component {
   render() {
     return (
-      <AppNavigation/>
-
+      <AppNavigator/>
     );
   }
 }
