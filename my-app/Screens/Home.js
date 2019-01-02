@@ -11,7 +11,6 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
-import {navigate} from 'react-navigation';
 
 class Home extends React.Component {
 
@@ -60,10 +59,10 @@ StatusBar.setHidden(false);
             <View style={styles.list}>
              <View style={{flexDirection: 'row'}}>
              <View style={{width: Dimensions.get('window').width/3, height: 100, backgroundColor: 'white',alignItems: 'center',}} >
-             <TouchableOpacity onPress={() => navigate('Login')}>
+             <TouchableOpacity onPress={() => this.props.navigation.navigate('ChatDetails')}>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
+                source={require('../assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
               Scan
@@ -74,7 +73,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
+                source={require('../assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
                Invite
@@ -85,7 +84,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {styles.ButtonImg}
+                source={require('../assets/userProfile.jpg')} style = {styles.ButtonImg}
              /> 
              <Text style = {styles.text}>
                Add
@@ -104,7 +103,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
+                source={require('../assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
               Home
@@ -115,7 +114,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
+                source={require('../assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
                Stories
@@ -126,7 +125,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
+                source={require('../assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
               People
@@ -137,7 +136,7 @@ StatusBar.setHidden(false);
              <TouchableOpacity>
              <Image
                 //style={styles.Image}
-                source={require('./assets/userProfile.jpg')} style = {{width: 60, height: 60}}
+                source={require('../assets/userProfile.jpg')} style = {{width: 60, height: 60}}
              /> 
              <Text style = {{ padding: 2, justifyContent: 'center', alignItems: 'center',  fontSize: 15, textAlign: 'center'}}>
                ßetting
@@ -161,7 +160,7 @@ StatusBar.setHidden(false);
                     <View style= {styles.MainContainer}> 
                      <Image
                        //style={styles.Image}
-                       source={require('./assets/userProfile.jpg')} style = {styles.Image}
+                       source={require('../assets/userProfile.jpg')} style = {styles.Image}
                       />                   
                       </View>
                         <View style={styles.label}>

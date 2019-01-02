@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
+
 import {createStackNavigator,createAppContainer} from 'react-navigation';
-import Home from '../Home';
-import Login from '../Login';
+import Home from '../Screens/Home';
+import Login from '../Screens/Login';
+import ChatDetails from '../Screens/ChatDetails';
+
 
 const AppNavigator = createStackNavigator(
 {
 Home: Home,
-Login: Login
+Login: Login,
+ChatDetails: ChatDetails
 },
 {
-initialRouteName: 'Home'
+initialRouteName: 'ChatDetails'
 }
 );
 
-class App extends React.Component {
-render() {
-return (
-<AppNavigator />
-);
-}
-}
+// class App extends React.Component {
+// render() {
+// return (
+// <AppNavigator />
+// );
+// }
+// }
+
 export default createAppContainer(AppNavigator);
