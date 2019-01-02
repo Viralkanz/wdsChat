@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'
  
-class ChatDetails extends React.Component {
+class ChatDetails extends Component {
   state = {
     messages: [],
   }
@@ -34,6 +34,7 @@ class ChatDetails extends React.Component {
       <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
+        maxInputLength={messages => this.maxInputLength(200)}
         user={{
           _id: 1,
         }}
