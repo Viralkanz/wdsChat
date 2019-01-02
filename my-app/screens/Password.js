@@ -13,6 +13,7 @@ import {
     TextInput
 } from "react-native";
 import Background from "../view/Background";
+import PasswordInputText from 'react-native-hide-show-password-input';
 
 export default class Password extends React.Component {
 
@@ -23,7 +24,6 @@ export default class Password extends React.Component {
             code: "",
             username: '',
             password: '',
-
         };
     }
     onLogin() {
@@ -63,13 +63,18 @@ export default class Password extends React.Component {
                             Enter your passsword to login </Text>
                         <View style={{ flexDirection: 'row' }} >
 
-                            <View style={{ flex: 0.5 }}>
-                                <TextInput
+                            <View style={{ flex: 1 }}>
+                            <PasswordInputText
+                                value={this.state.password}
+                                onChangeText={ (password) => this.setState({ password }) }/>
+
+
+                                {/* <TextInput
                                     value={this.state.username}
                                     onChangeText={(username) => this.setState({ username })}
                                     placeholder={'Your password'}
                                     style={styles.input}
-                                />
+                                /> */}
                             </View>
                         </View>
 
@@ -78,14 +83,12 @@ export default class Password extends React.Component {
                                 <Text style={styles.inputLabel2}>I forgot my password</Text>
                             </View>
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('OTP')}
-                                >
-
-                                    {/* <Image
-                                        source={require('./Users/jamest/Documents/Raj_Work/Works/WDSChatDemo/my-app/assets/RightArrow.png')}
-                                        style={styles.FloatingButtonStyle} /> */}
-
+                                <TouchableOpacity 
+                                    password={true}
+                                    secureTextEntry={true}
+                                    style={styles.password} activeOpacity={0.5}
+                                        onChangeText={(password) => this.setState({ password })}
+                                    onPress={() => this.props.navigation.navigate('OTP')}>
                                         <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
@@ -126,10 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#009C92"
     },
     inputWrapper2: {
-       
-       
         paddingVertical: 20,
-        
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -249,10 +249,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
        //  paddingTop: 15,
         // paddingBottom: 15,
-        marginLeft: 40,
-     //   marginRight: 50,
         borderRadius: 10,
-
-
     },
 });
