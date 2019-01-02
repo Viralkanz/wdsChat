@@ -7,6 +7,7 @@ import {
   import ChatListScreen from '../screens/ChatListScreen';
   import OTP from '../screens/OTP';
   import ChatDetails from '../screens/ChatDetails';
+  import PeopleList from '../screens/PeopleList';
   // import Home from '../screens/Home';
   
   
@@ -30,6 +31,10 @@ import {
 
     OTP: {
       screen: OTP
+    },
+
+    PeopleList: {
+      screen: PeopleList
     }
   });
   
