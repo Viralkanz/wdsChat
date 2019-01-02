@@ -126,7 +126,7 @@ getListItem(rowData){
     if(rowData && rowData.label){
         return(
             <TouchableHighlight
-                onPress={() => this.goNext(rowData.target)} 
+                onPress={() => this.goNext('ChatDetails')} 
                 style={styles.rowContainer}>
 
                 <View style={styles.mainContainer}>
