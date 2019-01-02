@@ -4,7 +4,7 @@ import {
   } from 'react-navigation';
   import Login from '../screens/Login';
   import Password from '../screens/Password';
-  import Home from '../screens/Home';
+  // import Home from '../screens/Home';
   
   
   
@@ -19,9 +19,9 @@ import {
   
     },
   
-    Home: {
-      screen : Home
-    }
+    // Home: {
+    //   screen : Home
+    // }
   });
   
   
