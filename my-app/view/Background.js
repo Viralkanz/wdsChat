@@ -43,13 +43,13 @@ width: '100%'
 },
 topStyle: {
 backgroundColor: '#2F0B3A',
-height: '20%',
+height: '30%',
 width: '100%'
 
 },
 bottomStyle: {
 backgroundColor: 'white',
-height: '80%',
+height: '70%',
 width: '100%'
 },
 text: {
