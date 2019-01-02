@@ -15,9 +15,16 @@ import {
 
 import Background from "../view/Background";
 import { Dropdown } from 'react-native-material-dropdown';
+<<<<<<< HEAD
 import SocketIOClient from 'socket.io-client';
 import { TextField } from 'react-native-material-textfield';
 import {TextInputLayout} from 'rn-textinputlayout';
+=======
+// import SocketIOClient from 'socket.io-client';
+
+const io = require('socket.io-client');
+let socket = io('http://192.168.1.6:5000/');
+>>>>>>> master
 
 export default class login extends React.Component {
 
@@ -25,6 +32,24 @@ export default class login extends React.Component {
 
     constructor(props) {
         super(props);
+
+    
+        // this.socket = SocketIOClient('http://192.168.1.6:5000');
+        // this.socket.on('connect', value => {
+        //     console.log('we got value', value);
+        // });
+        
+        // this.socket.emit('auth','9921059985');
+        // this.socket.on('hello', response => {
+        //     console.log('hello ',response);
+        // });
+        // this.socket.on('hello', (data) => {
+        //     console.log('Data recieved from server', data); //this will console 'channel 2'
+        //   });
+        
+        // this.socket.emit('hello');
+
+
         this.state = {
             code: "",
             username: '',
@@ -36,6 +61,7 @@ export default class login extends React.Component {
             console.log('We got value',value)
         });
     }
+
     onLogin() {
         const { username, password } = this.state;
 
@@ -129,7 +155,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontSize: 32,
         fontWeight: "800",
-        paddingVertical: 30
+        paddingVertical: 10
     },
     wrapper: {
         marginTop: 30
