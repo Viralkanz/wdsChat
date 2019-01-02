@@ -114,7 +114,8 @@ export default class OTP extends React.Component {
                 <Text style={styles.inputLabel2}>Resend Code</Text>
               </View>
               <View style={styles.buttonContainer}>
-                  <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle} >
+                  <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle} 
+                  onPress={() => this.props.navigation.navigate('ChatListScreen')}>
                   <Image 
                   source={require('../assets/RightArrow.png')} 
                       style={styles.FloatingButtonStyle} />
