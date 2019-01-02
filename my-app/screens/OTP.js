@@ -12,7 +12,7 @@ import {
   Alert
 } from "react-native";
 import CodeInput from 'react-native-confirmation-code-input';
-import Background from "../custom/Background";
+import Background from "../view/Background";
 
 export default class OTP extends React.Component {
 

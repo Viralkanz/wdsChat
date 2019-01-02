@@ -13,7 +13,7 @@ import {
     TextInput
 } from "react-native";
 
-import Background from "../custom/Background";
+import Background from "../view/Background";
 import { Dropdown } from 'react-native-material-dropdown';
 
 export default class login extends React.Component {

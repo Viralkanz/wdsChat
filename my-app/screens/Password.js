@@ -12,7 +12,7 @@ import {
     Alert,
     TextInput
 } from "react-native";
-import Background from "../custom/Background";
+import Background from "../view/Background";
 
 export default class Password extends React.Component {
 
