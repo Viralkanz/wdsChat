@@ -16,7 +16,6 @@ import Background from "../Background";
 
 export default class Password extends React.Component {
 
-    mobileNumber = { myMobileNumber: '+91 8888888888' }
 
     constructor(props) {
         super(props);
