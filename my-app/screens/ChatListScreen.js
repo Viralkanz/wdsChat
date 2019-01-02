@@ -1,16 +1,26 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, ListView, TouchableHighlight, Image, NetInfo, StatusBar } from 'react-native';
+import React from 'react';
+import { View, 
+        Text, 
+        StyleSheet, 
+        ListView, 
+        TouchableHighlight, 
+        Image, 
+        Button, 
+        StatusBar } from 'react-native';
 
 // create a component
-class ChatListScreen extends Component {
+class ChatListScreen extends React.Component {
 
+    
 
     static navigationOptions = {
-        title: 'Chats',        
-        headerStyle: {
-            backgroundColor: '#228B22',
-          }
+        title: 'Chats', 
+                  
+        // headerStyle: {
+        //     backgroundColor: '#228B22',
+        //     tintColor: '#FFF',
+        //   }
       }
      
       componentDidMount() {
@@ -29,6 +39,8 @@ class ChatListScreen extends Component {
     
     constructor(props) {
         super(props);
+
+        
 
         // this.state={
         //     connection_status : false
@@ -97,7 +109,6 @@ class ChatListScreen extends Component {
 
 
     updateListView(items) {
-        console.log("MachineTopicList.updateListView()")
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(
                 items.slice() // copy items to a new array
@@ -201,8 +212,6 @@ const styles = StyleSheet.create({
        height: '100%',
        marginLeft:'2%',
        justifyContent: 'center',
-       borderWidth: 1,
-       borderColor: '#ffffff',
        alignItems: 'center',
        borderRadius: 25
         
@@ -211,8 +220,6 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: '#ffffff',
         borderRadius: 25,
     },
     labelStyle: {
