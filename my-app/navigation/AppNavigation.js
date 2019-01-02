@@ -5,6 +5,8 @@ import {
   import Login from '../screens/Login';
   import Password from '../screens/Password';
   import ChatListScreen from '../screens/ChatListScreen';
+  import OTP from '../screens/OTP';
+  // import Home from '../screens/Home';
   
   
   
@@ -17,11 +19,10 @@ import {
     },
     ChatListScreen: {
       screen: ChatListScreen
+    },  
+    OTP: {
+      screen: OTP
     }
-  
-    // Home: {
-    //   screen : Home
-    // }
   });
   
   

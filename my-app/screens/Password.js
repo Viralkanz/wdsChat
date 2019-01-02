@@ -12,7 +12,7 @@ import {
     Alert,
     TextInput
 } from "react-native";
-import Background from "../Background";
+import Background from "../view/Background";
 
 export default class Password extends React.Component {
 
@@ -79,7 +79,7 @@ export default class Password extends React.Component {
                             </View>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('Home')}
+                                    onPress={() => this.props.navigation.navigate('OTP')}
                                 >
 
                                     {/* <Image
