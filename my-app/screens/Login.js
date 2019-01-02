@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontSize: 32,
         fontWeight: "800",
-        paddingVertical: 30
+        paddingVertical: 10
     },
     wrapper: {
         marginTop: 30

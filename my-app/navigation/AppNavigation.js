@@ -4,20 +4,20 @@ import {
   } from 'react-navigation';
   import Login from '../screens/Login';
   import Password from '../screens/Password';
-  // import Home from '../screens/Home';
+  import ChatListScreen from '../screens/ChatListScreen';
   
   
   
   const App = createStackNavigator({
     Login: {
-  
       screen: Login
     },
-  
     Password: {
       screen: Password
-  
     },
+    ChatListScreen: {
+      screen: ChatListScreen
+    }
   
     // Home: {
     //   screen : Home
