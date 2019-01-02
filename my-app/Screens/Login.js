@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     inputWrapper2: {
     
         paddingVertical: 20,
-        position: 'absolute',
-        top: '70%',
+        //position: 'absolute',
+        //top: '70%',
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,

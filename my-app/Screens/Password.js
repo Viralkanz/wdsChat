@@ -128,9 +128,9 @@ const styles = StyleSheet.create({
     },
     inputWrapper2: {
        
+       
         paddingVertical: 20,
-        position: 'absolute',
-        top: '60%',
+        
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -241,17 +241,17 @@ const styles = StyleSheet.create({
         height: 50,
     },
     input: {
-        width: '100%',
+        width: '90%',
         height: 34,
         padding: 10,
         borderWidth: 1,
         borderColor: 'black',
         marginTop: 10,
         marginBottom: 15,
-        // paddingTop: 15,
+       //  paddingTop: 15,
         // paddingBottom: 15,
-        marginLeft: 20,
-       // marginRight: 50,
+        marginLeft: 40,
+     //   marginRight: 50,
         borderRadius: 10,
 
 
