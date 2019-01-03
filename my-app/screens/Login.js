@@ -15,6 +15,9 @@ import {
 
 import Background from "../view/Background";
 import { Dropdown } from 'react-native-material-dropdown';
+import SocketIOClient from 'socket.io-client';
+import { TextField } from 'react-native-material-textfield';
+import {TextInputLayout} from 'rn-textinputlayout';
 // import SocketIOClient from 'socket.io-client';
 
 const io = require('socket.io-client');
@@ -50,6 +53,10 @@ export default class login extends React.Component {
             password: '',
 
         };
+        this.soket=SocketIOClient('http://192.168.1.6:5000');
+        this.soket.on('connect', value =>{
+            console.log('We got value',value)
+        });
     }
 
     onLogin() {
@@ -77,7 +84,7 @@ export default class login extends React.Component {
         return (
             <Background style={styles.container}>
                 {/* <View style={styles.topContainer}></View>
-<View style={styles.bottomContainer}></View> */}
+                    <View style={styles.bottomContainer}></View> */}
                 <ScrollView style={styles.wrapper}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>WhatsApp</Text>
@@ -87,7 +94,7 @@ export default class login extends React.Component {
                         <Text style={styles.inputLabel2}>WhatsApp Messenger</Text>
                         <Text style={styles.inputLabel3}>
                             Enter your mobile number to login or register</Text>
-                        <View style={{ flexDirection: 'row' }} >
+                        <View style={{ flexDirection: 'row', marginTop:5 }} >
                             <View style={{ width: '25%' }}>
                                 <Dropdown
                                     value={'+91'}
@@ -99,13 +106,11 @@ export default class login extends React.Component {
                                     data={data}
                                 />
                             </View>
-                            <View style={{ flex: 1, marginTop: 18 }}>
-                                <TextInput
-                                    value={this.state.username}
-                                    onChangeText={(username) => this.setState({ username })}
-                                    placeholder={'Your mobile number'}
-                                    style={styles.input}
-                                />
+                            <View style={{ flex: 1, marginLeft:8}}>
+
+                                <TextField
+                                    label='Mobile Number'
+                                        style={styles.TextInput}/>
                             </View>
                         </View>
 
@@ -119,8 +124,6 @@ export default class login extends React.Component {
                                     <Image
                                         source={require('../assets/RightArrow.png')}
                                         style={styles.FloatingButtonStyle} />
-
-
                                 </TouchableOpacity>
                             </View>
                         </View>
