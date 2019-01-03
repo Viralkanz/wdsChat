@@ -15,16 +15,13 @@ import {
 
 import Background from "../view/Background";
 import { Dropdown } from 'react-native-material-dropdown';
-<<<<<<< HEAD
 import SocketIOClient from 'socket.io-client';
 import { TextField } from 'react-native-material-textfield';
 import {TextInputLayout} from 'rn-textinputlayout';
-=======
 // import SocketIOClient from 'socket.io-client';
 
 const io = require('socket.io-client');
 let socket = io('http://192.168.1.6:5000/');
->>>>>>> master
 
 export default class login extends React.Component {
 
