@@ -12,53 +12,21 @@ import {
     Alert,
     TextInput
 } from "react-native";
-
 import Background from "../view/Background";
-import { Dropdown } from 'react-native-material-dropdown';
-import SocketIOClient from 'socket.io-client';
 import { TextField } from 'react-native-material-textfield';
-import {TextInputLayout} from 'rn-textinputlayout';
-// import SocketIOClient from 'socket.io-client';
+import PasswordInputText from 'react-native-hide-show-password-input';
 
-const io = require('socket.io-client');
-let socket = io('http://192.168.1.6:5000/');
+export default class SignUp extends React.Component {
 
-export default class login extends React.Component {
-
-    mobileNumber = { myMobileNumber: '+91 8888888888' }
 
     constructor(props) {
         super(props);
-
-    
-        // this.socket = SocketIOClient('http://192.168.1.6:5000');
-        // this.socket.on('connect', value => {
-        //     console.log('we got value', value);
-        // });
-        
-        // this.socket.emit('auth','9921059985');
-        // this.socket.on('hello', response => {
-        //     console.log('hello ',response);
-        // });
-        // this.socket.on('hello', (data) => {
-        //     console.log('Data recieved from server', data); //this will console 'channel 2'
-        //   });
-        
-        // this.socket.emit('hello');
-
-
         this.state = {
             code: "",
             username: '',
             password: '',
-
         };
-        this.soket=SocketIOClient('http://192.168.1.6:5000');
-        this.soket.on('connect', value =>{
-            console.log('We got value',value)
-        });
     }
-
     onLogin() {
         const { username, password } = this.state;
 
@@ -72,57 +40,41 @@ export default class login extends React.Component {
         StatusBar.setHidden(true);
     }
     render() {
-        let data = [{
-            value: '+91',
-        },
-        {
-            value: '+244',
-        },
-        {
-            value: '+256',
-        }];
         return (
             <Background style={styles.container}>
-                {/* <View style={styles.topContainer}></View>
-                    <View style={styles.bottomContainer}></View> */}
                 <ScrollView style={styles.wrapper}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>WhatsApp</Text>
                     </View>
 
                     <View style={styles.inputWrapper2}>
-                        <Text style={styles.inputLabel2}>WhatsApp Messenger</Text>
+                        <Text style={styles.inputLabel2}>Sign-Up</Text>
                         <Text style={styles.inputLabel3}>
-                            Enter your mobile number to login or register</Text>
-                        <View style={{ flexDirection: 'row', marginTop:5 }} >
-                            <View style={{ width: '25%' }}>
-                                <Dropdown
-                                    value={'+91'}
-                                    style={{ flex: 1 }}
-                                    style={{ width: 100, marginLeft: 8 }}
-                                    TextStyle={{ labelFontSize: 22, paddingTop: 50, paddingBottom: 20 }}
-                                    //style= {styles.Dropdown}
-                                    // style={{ width: "200%" }}
-                                    data={data}
-                                />
-                            </View>
-                            <View style={{ flex: 1, marginLeft:8}}>
-                                <TextField
-                                    label='Mobile Number' style={styles.TextInput}/>
-                            </View>
+                            Are you new User? </Text>
+                        <View style={{ flexDirection: 'row' }} >
+                            <View style={{ flex: 1 }}>
+                            <TextField
+                                    label='Email' style={styles.TextInput}/>
+                            <TextField
+                                    label='UserName' style={styles.TextInput}/>
+                            <TextField
+                                    label='Password' style={styles.TextInput}/>
                         </View>
-
-                        <View style={styles.container3}>
+                    </View>
+                     <View style={styles.container3}>
                             <View style={styles.resendCodeContainer}>
-                                <Text style={styles.inputLabel2} 
-                                onPress={()=>this.props.navigation.navigate('SignUp')}>Or connect with social account</Text>
+                                <Text style={styles.inputLabel2}
+                                onPress={() => this.props.navigation.navigate('Login')}
+                                >Have an account? SignIn</Text>
                             </View>
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('Password')}>
-                                    <Image
-                                        source={require('../assets/RightArrow.png')}
-                                        style={styles.FloatingButtonStyle} />
+                                <TouchableOpacity 
+                                    password={true}
+                                    secureTextEntry={true}
+                                    style={styles.password} activeOpacity={0.5}
+                                        onChangeText={(password) => this.setState({ password })}
+                                    onPress={() => this.props.navigation.navigate('ChatListScreen')}>
+                                        <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -162,10 +114,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#009C92"
     },
     inputWrapper2: {
-    
         paddingVertical: 20,
-        //position: 'absolute',
-        //top: '70%',
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -178,6 +127,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         backgroundColor: "#f2f2f2",
         shadowRadius: 6,
+        //elevation: 5
+
 
     },
     inputWrapper3: {
@@ -242,13 +193,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     resendCodeContainer: {
-        flex: 1,
+        flex: 2,
         fontWeight: "800"
     },
     container3: {
         flex: 1,
         flexDirection: "row",
-        marginTop: 8,
+        marginTop: 16,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -281,12 +232,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         marginTop: 10,
         marginBottom: 15,
-        //paddingTop: 15,
-        //paddingBottom: 15,
-        marginLeft: 30,
-        // marginRight: 30,
+       //  paddingTop: 15,
+        // paddingBottom: 15,
         borderRadius: 10,
-
-
     },
 });
