@@ -12,33 +12,72 @@ import {
     Alert,
     TextInput
 } from "react-native";
+import firebase from '../lib/firebase'; 
 import Background from "../view/Background";
 import PasswordInputText from 'react-native-hide-show-password-input';
 
+
 export default class Password extends React.Component {
 
+    email = '';
 
     constructor(props) {
         super(props);
         this.state = {
             code: "",
-            username: '',
+            email: "",
             password: '',
         };
-    }
-    onLogin() {
-        const { username, password } = this.state;
+        const { navigation } = this.props;
+        email= navigation.getParam('keyEmail', 'some default value');
 
-        Alert.alert('Credentials', `${username} + ${password}`);
-    }
+        console.log(email);
+    };
+
     static navigationOptions = {
         header: null
     };
 
     componentWillMount() {
         StatusBar.setHidden(true);
-    }
+    };
+
+    onLoginPress = () => {
+
+        console.log(email);
+        console.log(this.state.password);
+
+        // const isFormValid = this.runValidation();
+        // if (!isFormValid) {
+        //   return;
+        // }
+    
+        // this.setState({ isLoading: true });
+    
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, this.state.password)
+          .then(() => {
+            // this.setState({ isLoading: false });
+            // signInApp().then(() => this.props.navigation.navigate('SignedInStack'));
+            console.log("success");
+            this.props.navigation.navigate('OTP');
+          })
+          .catch((error) => {
+              console.log(error);
+            // showMessage({
+            //   message: 'Check your form',
+            //   description: `${error.message} (${error.code})`,
+            //   type: 'danger',
+            // });
+            // this.setState({
+            // //   isLoading: false,
+            // });
+          });
+      }
+
     render() {
+
         let data = [{
             value: '+91',
         },
@@ -88,7 +127,8 @@ export default class Password extends React.Component {
                                     secureTextEntry={true}
                                     style={styles.password} activeOpacity={0.5}
                                         onChangeText={(password) => this.setState({ password })}
-                                    onPress={() => this.props.navigation.navigate('OTP')}>
+                                        onPress={this.onLoginPress}>
+                                     {/* onPress={() => this.props.navigation.navigate('OTP')}> */}
                                         <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
