@@ -12,118 +12,139 @@ import {
     Alert,
     TextInput
 } from "react-native";
-
+import firebase from '../lib/firebase'; 
 import Background from "../view/Background";
-import { Dropdown } from 'react-native-material-dropdown';
 import { TextField } from 'react-native-material-textfield';
-import {TextInputLayout} from 'rn-textinputlayout';
+import PasswordInputText from 'react-native-hide-show-password-input';
+import Password from "./Password";
 
-   
+export default class SignUp extends React.Component {
 
-export default class login extends React.Component {
-
-    mobileNumber = { myMobileNumber: '+91 8888888888' }
 
     constructor(props) {
         super(props);
-
         this.state = {
             code: "",
+            email: "",
             username: '',
             password: '',
-
         };
+    };
+
+    // isValidate = () =>{
+    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    //     if(this.state.username == ''){
+    //         alert("Please enter your email!");
+    //     }else if (reg.test(this.state.username) === true) {
+    //         this.props.navigation.navigate('Password', {
+    //                 keyEmail: this.state.username,
+    //                 });
+    //     } else {
+    //         alert("Please check your email!");
+    //     }
+    // };
     
-    };
-
-    // onLogin() {
-    //     const { username, password } = this.state;
-
-    //     Alert.alert('Credentials', `${username} + ${password}`);
-    // }
-
-    isValidate = () =>{
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-        if(this.state.username == ''){
-            alert("Please enter your email!");
-        }else if (reg.test(this.state.username) === true) {
-            this.props.navigation.navigate('Password', {
-                    keyEmail: this.state.username,
-                    });
-        } else {
-            alert("Please check your email!");
-        }
-    };
-
     static navigationOptions = {
         header: null
+
     };
 
     componentWillMount() {
         StatusBar.setHidden(true);
-    }
+    };
+
+    onSubmitRegistration = () => {
+        // const { email, password } = this.state;
+    
+        // const isFormValid = this.runValidation();
+        // if (!isFormValid) {
+        //   return;
+        // }
+    
+        // this.setState({ isLoading: true });
+    
+        console.log("Email: " + this.state.email);
+        console.log("UserName: " + this.state.username);
+        console.log("Password: " + this.state.password);
+
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .then(({ user }) => {
+            console.log(user);
+            // Add the new user to the users table
+            firebase.database().ref()
+              .child('users')
+              .push({
+                email: this.state.email,
+                uid: user.uid,
+                password: this.state.password,
+                name: this.state.username,
+                photoURL: getGravatarSrc(this.state.email),
+              });
+    
+            // Update the user's metadata on firebase
+            user.updateProfile({
+              displayName: this.state.name,
+              photoURL: getGravatarSrc(this.state.email),
+            });
+            // this.setState({ isLoading: false });
+            return this.props.navigation.navigate('ChatListScreen');
+          })
+          .catch((error) => {
+            console.log(error);
+            // showMessage({
+            //   message: 'Check your form',
+            //   description: `${error.message} (${error.code})`,
+            //   type: 'danger',
+            // });
+            // this.setState({ isLoading: false });
+          });
+      };
+
 
     render() {
-        let data = [{
-            value: '+91',
-        },
-        {
-            value: '+244',
-        },
-        {
-            value: '+256',
-        }];
         return (
             <Background style={styles.container}>
-                {/* <View style={styles.topContainer}></View>
-                    <View style={styles.bottomContainer}></View> */}
                 <ScrollView style={styles.wrapper}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>WhatsApp</Text>
                     </View>
 
                     <View style={styles.inputWrapper2}>
-                        <Text style={styles.inputLabel2}>WhatsApp Messenger</Text>
+                        <Text style={styles.inputLabel2}>Sign-Up</Text>
                         <Text style={styles.inputLabel3}>
-                            Enter your mobile number to login or register</Text>
-                        <View style={{ flexDirection: 'row', marginTop:5 }} >
-                            <View style={{ width: '25%',display:'none'}}>
-                                <Dropdown
-                                    value={'+91'}
-                                    style={{ flex: 1,width: 100, marginLeft: 8 }}
-                                    TextStyle={{ labelFontSize: 22, paddingTop: 50, paddingBottom: 20 }}
-                                    data={data}
-                                />
-                            </View>
-                            <View style={{ flex: 1, marginLeft:8}}>
-                                <TextField
-                                        label='Email'
-                                        style={styles.TextInput}
-                                        onChangeText={(text) => this.setState({username:text})}
-                                        />
-                                    {/* label='Mobile Number' style={styles.TextInput}/> */}
-                            </View>
+                            Are you new User? </Text>
+                        <View style={{ flexDirection: 'row' }} >
+                            <View style={{ flex: 1 }}>
+                            <TextField
+                                    label='Email' style={styles.TextInput}
+                                    onChangeText={(text) => this.setState({email:text})}    
+                                    />
+                            <TextField
+                                    label='UserName' style={styles.TextInput}
+                                    onChangeText={(text) => this.setState({username:text})}  
+                                    />
+                            <TextField
+                                    label='Password' style={styles.TextInput}
+                                    onChangeText={(text) => this.setState({password:text})}  
+                                    />
                         </View>
-
-                        <View style={styles.container3}>
+                    </View>
+                     <View style={styles.container3}>
                             <View style={styles.resendCodeContainer}>
-                                <Text style={styles.inputLabel2} 
-                                onPress={()=>this.props.navigation.navigate('SignUp')}>Or connect with social account</Text>
+                                <Text style={styles.inputLabel2}
+                                onPress={() => this.props.navigation.navigate('Login')}>Have an account? SignIn</Text>
                             </View>
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                
-                                    // onPress={() => {
-                                    //     /* 1. Navigate to the Details route with params */
-                                    //     this.props.navigation.navigate('Password', {
-                                    //     otherParam: this.state.username,
-                                    //     });
-                                    // }}>
-                                    onPress={this.isValidate}>
-                                     {/* onPress={() => this.props.navigation.navigate('Password')}> */}
-                                    <Image
-                                        source={require('../assets/RightArrow.png')}
-                                        style={styles.FloatingButtonStyle} />
+                                <TouchableOpacity 
+                                    password={true}
+                                    secureTextEntry={true}
+                                    style={styles.password} activeOpacity={0.5}
+                                        onChangeText={(password) => this.setState({ password })}
+                                        onPress={this.onSubmitRegistration}>
+                                   {/* onPress={() => this.props.navigation.navigate('ChatListScreen')}> */}
+                                        <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -132,14 +153,6 @@ export default class login extends React.Component {
             </Background>
         );
     }
-}
-
-const options = {
-    fields: {
-      email: {
-        error: 'Please enter valid email.',
-      },
-  }
 }
 
 const styles = StyleSheet.create({
@@ -171,10 +184,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#009C92"
     },
     inputWrapper2: {
-    
         paddingVertical: 20,
-        //position: 'absolute',
-        //top: '70%',
         paddingHorizontal: 20,
         marginRight: 16,
         marginLeft: 16,
@@ -187,6 +197,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         backgroundColor: "#f2f2f2",
         shadowRadius: 6,
+        //elevation: 5
+
 
     },
     inputWrapper3: {
@@ -251,13 +263,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     resendCodeContainer: {
-        flex: 1,
+        flex: 2,
         fontWeight: "800"
     },
     container3: {
         flex: 1,
         flexDirection: "row",
-        marginTop: 8,
+        marginTop: 16,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -290,12 +302,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         marginTop: 10,
         marginBottom: 15,
-        //paddingTop: 15,
-        //paddingBottom: 15,
-        marginLeft: 30,
-        // marginRight: 30,
+       //  paddingTop: 15,
+        // paddingBottom: 15,
         borderRadius: 10,
-
-
     },
 });
