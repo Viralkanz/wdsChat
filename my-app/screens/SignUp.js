@@ -18,20 +18,12 @@ import PasswordInputText from 'react-native-hide-show-password-input';
 
 export default class SignUp extends React.Component {
 
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            code: "",
-            username: '',
-            password: '',
-        };
+    state={
+        email:'',
+        userName:'',
+        password:'',
     }
-    onLogin() {
-        const { username, password } = this.state;
 
-        Alert.alert('Credentials', `${username} + ${password}`);
-    }
     static navigationOptions = {
         header: null
     };
@@ -73,7 +65,7 @@ export default class SignUp extends React.Component {
                                     secureTextEntry={true}
                                     style={styles.password} activeOpacity={0.5}
                                         onChangeText={(password) => this.setState({ password })}
-                                    onPress={() => this.props.navigation.navigate('ChatListScreen')}>
+                                    onPress={this.onSignUpPressed}>
                                         <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
@@ -82,6 +74,63 @@ export default class SignUp extends React.Component {
                 </ScrollView>
             </Background>
         );
+    }
+
+    onSignUpPressed = () => {
+        const { email,password}=this.state;
+
+        const isFormValid=this.runValidation();
+    }
+
+    runValidation = () =>{
+        const{email,userName,password} =this.state;
+
+        const fields= [
+            {
+                value: email,
+                verify:[
+                    {
+                        type:'isPopulated',
+                        message: 'Please enter your email address',
+                    },
+                    {
+                        type:'isPopulated',
+                        message: 'Please format your email address correctly',
+                    }
+                ],
+            },
+            {
+                value: userName,
+                verify: [
+                    {
+                        type:'isPopulated',
+                        message:'Please enter your username'
+                    },
+                ],
+            },
+            {
+                value: password,
+                verify: [
+                    {
+                        type:'isPopulated',
+                        message:'Please enter your password'
+                    },
+                    {
+                        type:'isGreaterThenLength',
+                        lenght:'5',
+                        message:'Password must be at least six characters',
+                    },
+                ],
+            },
+        ];
+        const errorMessage=validateFrom(fields);
+        if(errorMessage){
+            showMessage({
+                message:'Check your form',
+                description:errorMessage,
+                type:'danger',
+            })
+        }
     }
 }
 
