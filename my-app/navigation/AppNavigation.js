@@ -7,7 +7,7 @@ import {
   import ChatListScreen from '../screens/ChatListScreen';
   import OTP from '../screens/OTP';
   import ChatDetails from '../screens/ChatDetails';
-  import PeopleList from '../screens/PeopleList';
+  import SignUp from '../screens/SignUp'
   // import Home from '../screens/Home';
   
   
@@ -16,7 +16,9 @@ import {
     Login: {
       screen: Login
     },
-
+    SignUp: {
+      screen: SignUp
+    },
     Password: {
       screen: Password
     },
@@ -31,10 +33,6 @@ import {
 
     OTP: {
       screen: OTP
-    },
-
-    PeopleList: {
-      screen: PeopleList
     }
   });
   
