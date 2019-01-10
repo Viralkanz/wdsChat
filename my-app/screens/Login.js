@@ -16,6 +16,10 @@ import {
 import Background from "../view/Background";
 import { Dropdown } from 'react-native-material-dropdown';
 import { TextField } from 'react-native-material-textfield';
+import {TextInputLayout} from 'rn-textinputlayout';
+
+   
+
 export default class login extends React.Component {
 
     mobileNumber = { myMobileNumber: '+91 8888888888' }
@@ -27,14 +31,31 @@ export default class login extends React.Component {
             code: "",
             username: '',
             password: '',
+            usernameError:''
         };
-    }
+    
+    };
 
-    onLogin() {
-        const { username, password } = this.state;
+    // onLogin() {
+    //     const { username, password } = this.state;
 
-        Alert.alert('Credentials', `${username} + ${password}`);
-    }
+    //     Alert.alert('Credentials', `${username} + ${password}`);
+    // }
+
+    isValidate = () =>{
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+        if(this.state.username == ''){
+            this.setState(()=>({usernameError:"Please enter your email!"}))
+        }else if (reg.test(this.state.username) === true) {
+            this.props.navigation.navigate('Password', {
+                    keyEmail: this.state.username,
+                    });
+                    this.setState(()=>({usernameError:null}))
+        } else {
+            this.setState(()=>({usernameError:"Please check your email!"}))
+        }
+    };
+
     static navigationOptions = {
         header: null
     };
@@ -42,6 +63,7 @@ export default class login extends React.Component {
     componentWillMount() {
         StatusBar.setHidden(true);
     }
+
     render() {
         let data = [{
             value: '+91',
@@ -66,20 +88,22 @@ export default class login extends React.Component {
                         <Text style={styles.inputLabel3}>
                             Enter your mobile number to login or register</Text>
                         <View style={{ flexDirection: 'row', marginTop:5 }} >
-                            <View style={{ width: '25%' }}>
+                            <View style={{ width: '25%',display:'none'}}>
                                 <Dropdown
                                     value={'+91'}
-                                    style={{ flex: 1 }}
-                                    style={{ width: 100, marginLeft: 8 }}
+                                    style={{ flex: 1,width: 100, marginLeft: 8 }}
                                     TextStyle={{ labelFontSize: 22, paddingTop: 50, paddingBottom: 20 }}
-                                    //style= {styles.Dropdown}
-                                    // style={{ width: "200%" }}
                                     data={data}
                                 />
                             </View>
                             <View style={{ flex: 1, marginLeft:8}}>
                                 <TextField
-                                    label='Mobile Number' style={styles.TextInput}/>
+                                        label='Email'
+                                        style={styles.TextInput}
+                                        onChangeText={(text) => this.setState({username:text})}
+                                        />
+                                        <Text style={{color:"#ff0000"}}>{this.state.usernameError}</Text>
+                                    {/* label='Mobile Number' style={styles.TextInput}/> */}
                             </View>
                         </View>
 
@@ -90,7 +114,15 @@ export default class login extends React.Component {
                             </View>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.password} activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('Password')}>
+                
+                                    // onPress={() => {
+                                    //     /* 1. Navigate to the Details route with params */
+                                    //     this.props.navigation.navigate('Password', {
+                                    //     otherParam: this.state.username,
+                                    //     });
+                                    // }}>
+                                    onPress={this.isValidate}>
+                                     {/* onPress={() => this.props.navigation.navigate('Password')}> */}
                                     <Image
                                         source={require('../assets/RightArrow.png')}
                                         style={styles.FloatingButtonStyle} />
@@ -102,6 +134,14 @@ export default class login extends React.Component {
             </Background>
         );
     }
+}
+
+const options = {
+    fields: {
+      email: {
+        error: 'Please enter valid email.',
+      },
+  }
 }
 
 const styles = StyleSheet.create({
