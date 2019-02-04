@@ -12,97 +12,25 @@ import {
     Alert,
     TextInput
 } from "react-native";
-import firebase from '../lib/firebase'; 
 import Background from "../view/Background";
 import { TextField } from 'react-native-material-textfield';
 import PasswordInputText from 'react-native-hide-show-password-input';
-import Password from "./Password";
 
 export default class SignUp extends React.Component {
 
+    state={
+        email:'',
+        userName:'',
+        password:'',
+    }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            code: "",
-            email: "",
-            username: '',
-            password: '',
-        };
-    };
-
-    // isValidate = () =>{
-    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
-    //     if(this.state.username == ''){
-    //         alert("Please enter your email!");
-    //     }else if (reg.test(this.state.username) === true) {
-    //         this.props.navigation.navigate('Password', {
-    //                 keyEmail: this.state.username,
-    //                 });
-    //     } else {
-    //         alert("Please check your email!");
-    //     }
-    // };
-    
     static navigationOptions = {
         header: null
-
     };
 
     componentWillMount() {
         StatusBar.setHidden(true);
-    };
-
-    onSubmitRegistration = () => {
-        // const { email, password } = this.state;
-    
-        // const isFormValid = this.runValidation();
-        // if (!isFormValid) {
-        //   return;
-        // }
-    
-        // this.setState({ isLoading: true });
-    
-        console.log("Email: " + this.state.email);
-        console.log("UserName: " + this.state.username);
-        console.log("Password: " + this.state.password);
-
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.state.email, this.state.password)
-          .then(({ user }) => {
-            console.log(user);
-            // Add the new user to the users table
-            firebase.database().ref()
-              .child('users')
-              .push({
-                email: this.state.email,
-                uid: user.uid,
-                password: this.state.password,
-                name: this.state.username,
-                photoURL: getGravatarSrc(this.state.email),
-              });
-    
-            // Update the user's metadata on firebase
-            user.updateProfile({
-              displayName: this.state.name,
-              photoURL: getGravatarSrc(this.state.email),
-            });
-            // this.setState({ isLoading: false });
-            return this.props.navigation.navigate('ChatListScreen');
-          })
-          .catch((error) => {
-            console.log(error);
-            // showMessage({
-            //   message: 'Check your form',
-            //   description: `${error.message} (${error.code})`,
-            //   type: 'danger',
-            // });
-            // this.setState({ isLoading: false });
-          });
-      };
-
-
+    }
     render() {
         return (
             <Background style={styles.container}>
@@ -118,23 +46,18 @@ export default class SignUp extends React.Component {
                         <View style={{ flexDirection: 'row' }} >
                             <View style={{ flex: 1 }}>
                             <TextField
-                                    label='Email' style={styles.TextInput}
-                                    onChangeText={(text) => this.setState({email:text})}    
-                                    />
+                                    label='Email' style={styles.TextInput}/>
                             <TextField
-                                    label='UserName' style={styles.TextInput}
-                                    onChangeText={(text) => this.setState({username:text})}  
-                                    />
+                                    label='UserName' style={styles.TextInput}/>
                             <TextField
-                                    label='Password' style={styles.TextInput}
-                                    onChangeText={(text) => this.setState({password:text})}  
-                                    />
+                                    label='Password' style={styles.TextInput}/>
                         </View>
                     </View>
                      <View style={styles.container3}>
                             <View style={styles.resendCodeContainer}>
                                 <Text style={styles.inputLabel2}
-                                onPress={() => this.props.navigation.navigate('Login')}>Have an account? SignIn</Text>
+                                onPress={() => this.props.navigation.navigate('Login')}
+                                >Have an account? SignIn</Text>
                             </View>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity 
@@ -142,8 +65,7 @@ export default class SignUp extends React.Component {
                                     secureTextEntry={true}
                                     style={styles.password} activeOpacity={0.5}
                                         onChangeText={(password) => this.setState({ password })}
-                                        onPress={this.onSubmitRegistration}>
-                                   {/* onPress={() => this.props.navigation.navigate('ChatListScreen')}> */}
+                                    onPress={this.onSignUpPressed}>
                                         <Image source={require('../assets/RightArrow.png')} style={styles.FloatingButtonStyle}/>
                                 </TouchableOpacity>
                             </View>
@@ -152,6 +74,63 @@ export default class SignUp extends React.Component {
                 </ScrollView>
             </Background>
         );
+    }
+
+    onSignUpPressed = () => {
+        const { email,password}=this.state;
+
+        const isFormValid=this.runValidation();
+    }
+
+    runValidation = () =>{
+        const{email,userName,password} =this.state;
+
+        const fields= [
+            {
+                value: email,
+                verify:[
+                    {
+                        type:'isPopulated',
+                        message: 'Please enter your email address',
+                    },
+                    {
+                        type:'isPopulated',
+                        message: 'Please format your email address correctly',
+                    }
+                ],
+            },
+            {
+                value: userName,
+                verify: [
+                    {
+                        type:'isPopulated',
+                        message:'Please enter your username'
+                    },
+                ],
+            },
+            {
+                value: password,
+                verify: [
+                    {
+                        type:'isPopulated',
+                        message:'Please enter your password'
+                    },
+                    {
+                        type:'isGreaterThenLength',
+                        lenght:'5',
+                        message:'Password must be at least six characters',
+                    },
+                ],
+            },
+        ];
+        const errorMessage=validateFrom(fields);
+        if(errorMessage){
+            showMessage({
+                message:'Check your form',
+                description:errorMessage,
+                type:'danger',
+            })
+        }
     }
 }
 
